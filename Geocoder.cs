@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -8,9 +9,18 @@ namespace GeocodingHarness
 {
 	public class Geocoder
 	{
+		private static string configFileName = "dev.config";
 		public Geocoder()
 		{
 			_googleApiKey = ConfigurationManager.AppSettings["google-api-key"];
+			if (string.IsNullOrWhiteSpace(_googleApiKey))
+			{
+				// Try loading from file
+				if (File.Exists(configFileName))
+				{
+					_googleApiKey = File.ReadAllText(configFileName);
+				}
+			}
 		}
 		private string _rawResult;
 
