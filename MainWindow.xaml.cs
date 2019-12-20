@@ -47,7 +47,7 @@ namespace GeocodingHarness
 				PlaceId.Text = foundLocation.place_id;
 				FormattedAddress.Text = foundLocation.formatted_address;
 				AddressComponents.Text = GenerateAddressComponentText(foundLocation.address_components);
-				LocationBounds.Text = GenerateBounds(foundLocation.geometry.bounds);
+				LocationBounds.Text =  GenerateBounds(foundLocation.geometry.bounds);
 
 			}
 			catch (Exception ex)
@@ -62,6 +62,10 @@ namespace GeocodingHarness
 
 		private string GenerateBounds(Bounds bounds)
 		{
+			if (bounds == null)
+			{
+				return "bounds are unavailable";
+			}
 			return $"SW:{bounds.southwest.lat},{bounds.southwest.lng}{Environment.NewLine}NE:{bounds.northeast.lat},{bounds.northeast.lng}";
 		}
 
