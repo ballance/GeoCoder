@@ -2,17 +2,6 @@
 
 namespace GeocodingHarness
 {
-	//public class CustomResult
-	//{
-	//	public List<AddressComponent> address_components { get; set; }
-	//	public string formatted_address { get; set; }
-	//	public Geometry geometry { get; set; }
-	//	public string place_id { get; set; }
-	//	public List<string> types { get; set; }
-
-	//	public bool IsValid { get; set; }
-	//}
-
 	public class EntityLink
 	{
 		public int createdBy { get; set; }
