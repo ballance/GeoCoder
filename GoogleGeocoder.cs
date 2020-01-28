@@ -7,10 +7,10 @@ using Newtonsoft.Json;
 
 namespace GeocodingHarness
 {
-	public class Geocoder
+	public class GoogleGeocoder
 	{
-		private static string configFileName = "dev.config";
-		public Geocoder()
+		private static string configFileName = "google-dev.config";
+		public GoogleGeocoder()
 		{
 			_googleApiKey = ConfigurationManager.AppSettings["google-api-key"];
 			if (string.IsNullOrWhiteSpace(_googleApiKey))
@@ -38,7 +38,6 @@ namespace GeocodingHarness
 					Uri.EscapeDataString(inputAddress), _googleApiKey));
 				
 				webClient.DownloadStringAsync(googleUri);
-
 			}
 			catch (Exception ex)
 			{

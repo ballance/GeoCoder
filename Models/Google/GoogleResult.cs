@@ -2,7 +2,7 @@
 
 namespace GeocodingHarness
 {
-	public class Result
+	public class GoogleResult
 	{
 		public List<AddressComponent> address_components { get; set; }
 		public string formatted_address { get; set; }

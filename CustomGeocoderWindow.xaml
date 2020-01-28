@@ -1,18 +1,19 @@
-﻿<Window x:Class="GeocodingHarness.MainWindow"
+﻿<Window x:Class="GeocodingHarness.CustomGeocoderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeocodingHarness"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900" Background="#eee">
+        Title="Custom Geocoder" Height="700" Width="900" Background="#eee">
 	<Grid>
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="1*" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="60" />
+				<RowDefinition Height="40" />
+				<RowDefinition Height="40" />
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 			<Grid>
@@ -22,9 +23,21 @@
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="40" />
+					<RowDefinition Height="1*" />
 				</Grid.RowDefinitions>
 				<Button Grid.Row="0" Grid.Column="0" Background="AliceBlue" Name="GeocodeThis" Content="Geocode!" Click="GeocodeThis_Click" MinWidth="100"/>
 				<TextBox Grid.Row="0" Grid.Column="1" Name="InputAddress" Text="250 Hudson St, New York City, New York" TextWrapping="Wrap"  />
+			</Grid>
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="200" />
+					<ColumnDefinition Width="1*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="40" />
+					<RowDefinition Height="1*" />
+				</Grid.RowDefinitions>
+				
 			</Grid>
 			<Grid Grid.Row="2">
 				<Grid.ColumnDefinitions>
@@ -62,7 +75,7 @@
 
 				<Label HorizontalAlignment="right" Grid.Row="6" Grid.Column="0" Content="Location Bounds " />
 				<TextBox Grid.Row="6" Grid.Column="1" Name="LocationBounds" />
-				
+
 				<Label HorizontalAlignment="right" Grid.Row="7" Grid.Column="0" Content="Address Components" />
 				<TextBox Grid.Row="7" Grid.Column="1" Name="AddressComponents" />
 
