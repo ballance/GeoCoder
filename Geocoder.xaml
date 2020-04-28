@@ -24,7 +24,7 @@
 					<RowDefinition Height="40" />
 				</Grid.RowDefinitions>
 				<Button Grid.Row="0" Grid.Column="0" Background="AliceBlue" Name="GeocodeThis" Content="Geocode!" Click="GeocodeThis_Click" MinWidth="100"/>
-				<TextBox Grid.Row="0" Grid.Column="1" Name="InputAddress" Text="250 Hudson St, New York City, New York" TextWrapping="Wrap"  />
+				<TextBox Grid.Row="0" Grid.Column="1" Name="InputAddress" TextWrapping="Wrap"  />
 			</Grid>
 			<Grid Grid.Row="2">
 				<Grid.ColumnDefinitions>
@@ -38,33 +38,37 @@
 					<RowDefinition Height="30" />
 					<RowDefinition Height="30" />
 					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
 					<RowDefinition Height="40" />
 					<RowDefinition Height="1*" />
 				</Grid.RowDefinitions>
 
-				<Label HorizontalAlignment="right" Grid.Row="0" Grid.Column="0" Content="Geocoding Status"/>
-				<TextBox Grid.Row="0" Grid.Column="1" Name="Status"  />
+				<Label HorizontalAlignment="right" Grid.Row="0" Grid.Column="0" Content="Locations Found"/>
+				<TextBox Grid.Row="0" Grid.Column="1" Name="LocationsFound"  />
 
-				<Label HorizontalAlignment="right" Grid.Row="1" Grid.Column="0" Content="Latitude" />
-				<TextBox Grid.Row="1" Grid.Column="1" Name="Latitude"  />
+				<Label HorizontalAlignment="right" Grid.Row="1" Grid.Column="0" Content="Geocoding Status"/>
+				<TextBox Grid.Row="1" Grid.Column="1" Name="Status"  />
 
-				<Label HorizontalAlignment="right" Grid.Row="2" Grid.Column="0" Content="Longitude" />
-				<TextBox Grid.Row="2" Grid.Column="1" Name="Longitude" />
+				<Label HorizontalAlignment="right" Grid.Row="2" Grid.Column="0" Content="Latitude" />
+				<TextBox Grid.Row="2" Grid.Column="1" Name="Latitude"  />
 
-				<Label HorizontalAlignment="right" Grid.Row="3" Grid.Column="0" Content="Geocoded Address" />
-				<TextBox Grid.Row="3" Grid.Column="1" Name="GeocodedAddress" />
+				<Label HorizontalAlignment="right" Grid.Row="3" Grid.Column="0" Content="Longitude" />
+				<TextBox Grid.Row="3" Grid.Column="1" Name="Longitude" />
 
-				<Label HorizontalAlignment="right" Grid.Row="4" Grid.Column="0" Content="Place Id"/>
-				<TextBox Grid.Row="4" Grid.Column="1" Name="PlaceId" />
+				<Label HorizontalAlignment="right" Grid.Row="4" Grid.Column="0" Content="Geocoded Address" />
+				<TextBox Grid.Row="4" Grid.Column="1" Name="GeocodedAddress" />
 
-				<Label HorizontalAlignment="right" Grid.Row="5" Grid.Column="0" Content="Formatted Address" />
-				<TextBox Grid.Row="5" Grid.Column="1" Name="FormattedAddress" />
+				<Label HorizontalAlignment="right" Grid.Row="5" Grid.Column="0" Content="Place Id"/>
+				<TextBox Grid.Row="5" Grid.Column="1" Name="PlaceId" />
 
-				<Label HorizontalAlignment="right" Grid.Row="6" Grid.Column="0" Content="Location Bounds " />
-				<TextBox Grid.Row="6" Grid.Column="1" Name="LocationBounds" />
+				<Label HorizontalAlignment="right" Grid.Row="6" Grid.Column="0" Content="Formatted Address" />
+				<TextBox Grid.Row="6" Grid.Column="1" Name="FormattedAddress" />
+
+				<Label HorizontalAlignment="right" Grid.Row="7" Grid.Column="0" Content="Location Bounds " />
+				<TextBox Grid.Row="7" Grid.Column="1" Name="LocationBounds" />
 				
-				<Label HorizontalAlignment="right" Grid.Row="7" Grid.Column="0" Content="Address Components" />
-				<TextBox Grid.Row="7" Grid.Column="1" Name="AddressComponents" />
+				<Label HorizontalAlignment="right" Grid.Row="8" Grid.Column="0" Content="Address Components" />
+				<TextBox Grid.Row="8" Grid.Column="1" Name="AddressComponents" />
 
 			</Grid>
 		</Grid>

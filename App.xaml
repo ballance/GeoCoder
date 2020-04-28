@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:GeocodingHarness"
-             StartupUri="MainWindow.xaml">
-    <Application.Resources>
+             StartupUri="Menu.xaml"
+			 xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+       >
+	<Application.Resources>
          
     </Application.Resources>
 </Application>

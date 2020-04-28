@@ -1,30 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Geocoding.Models.Google;
 
 namespace GeocodingHarness
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
-		
 		public MainWindow()
 		{
 			InitializeComponent();
+			InputAddress.Text = ConfigurationManager.AppSettings["starting-location"];
 		}
 
 		private async void GeocodeThis_Click(object sender, RoutedEventArgs e)
@@ -35,12 +25,15 @@ namespace GeocodingHarness
 				Status.Text = "Querying...";
 				var inputAddress = InputAddress.Text;
 
-				var foundLocation = await QueryGoogleGeocoderAsync(inputAddress);
-				if (!foundLocation.IsValid)
+				var foundLocations = await QueryGoogleGeocoderAsync(inputAddress);
+				if (!foundLocations.Any(x => x.IsValid))
 				{
-					Status.Text = "Unable to geocode.  Check that your config has a valid Google Maps API key.";
+					Status.Text = "Unable to geocode or no locations found.  You might want to check that your config has a valid Google Maps API key.";
 					return;
 				}
+
+				LocationsFound.Text = foundLocations.Count().ToString();
+				var foundLocation = foundLocations.First();
 				Latitude.Text = foundLocation.geometry.location.lat.ToString();
 				Longitude.Text = foundLocation.geometry.location.lng.ToString();
 				GeocodedAddress.Text = foundLocation.formatted_address;
@@ -48,8 +41,7 @@ namespace GeocodingHarness
 				FormattedAddress.Text = foundLocation.formatted_address;
 				AddressComponents.Text = GenerateAddressComponentText(foundLocation.address_components);
 				LocationBounds.Text =  GenerateBounds(foundLocation.geometry.bounds);
-
-			}
+  			}
 			catch (Exception ex)
 			{
 				Status.Text = ex.Message;
@@ -84,24 +76,26 @@ namespace GeocodingHarness
 			return sb.ToString();
 		}
 
-		private async Task<Result> QueryGoogleGeocoderAsync(string inputAddress)
+		private async Task<List<Result>> QueryGoogleGeocoderAsync(string inputAddress)
 		{
-			var geocoder = new Geocoder();
+			var geocoder = new GoogleGeocoder();
 			geocoder.GeocodeAddress(inputAddress);
 			var geocodedLocation = await geocoder.GetJsonObjectFromGeocodeResultAsync();
 
 			Status.Text = geocodedLocation.status;
 
-			var foundLocation = new Result
-			{
-				IsValid = false
-			};
+			List<Result> foundLocations = new List<Result>();
+			
 			if (geocodedLocation.status != "REQUEST_DENIED" && geocodedLocation.results.Any())
 			{
-				foundLocation = geocodedLocation.results.First(); // This is horrid, but for now...
-				foundLocation.IsValid = true;
+				foundLocations = geocodedLocation.results; // This is horrid, but for now...
+														   //foundLocation.IsValid = true;
+				foreach (var result in foundLocations)
+				{
+					result.IsValid = true;
+				}
 			}
-			return foundLocation;
+			return foundLocations;
 		}
 	}
 }
